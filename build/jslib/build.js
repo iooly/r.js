@@ -427,8 +427,8 @@ define(function (require) {
 
                 if (modules) {
                     modules.forEach(function (module) {
-                        if (module.name) {
-                            module._buildPath = buildContext.nameToUrl(module.name, null);
+                        if (typeof module.name !== 'undefined' || typeof module.out !== 'undefined') {
+                            module._buildPath = typeof module.out !== 'undefined' ?  module.out : buildContext.nameToUrl(module.name, null);
 
                             //If buildPath and sourcePath are the same, throw since this
                             //would result in modifying source. This condition can happen
